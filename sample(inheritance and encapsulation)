@@ -1,0 +1,170 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args){
+        Scanner input = new Scanner(System.in);
+
+        int choice;
+        //MENU
+        System.out.println("1 - Student information");
+        System.out.println("2 - Employee information");
+        System.out.print("Enter your selection: ");
+        choice = input.nextInt();
+
+        switch (choice) {
+            case 1: // if the user choose student
+                int id;
+                String name;
+                String course;
+                int yearLevel;
+                
+                // getter
+                System.out.print("Enter your ID NUmber: ");
+                id = input.nextInt();
+                input.nextLine(); // para mabasa yung sa susunod na print out
+                System.out.print("Enter youf full name: ");
+                name = input.nextLine();
+                System.out.print("Enter your course: ");
+                course = input.nextLine();
+                System.out.print("Enter your year level: ");
+                yearLevel = input.nextInt();
+
+                Student stud = new Student(); // create object tapos malalagay ung info na ininput ni user doon sa seperate class na si "student'
+
+                //setter: inistore na input ni users
+                stud.setID(id);
+                stud.setName(name);
+                stud.setCourse(course);
+                stud.setYearLevel(yearLevel);
+
+                System.out.println("\nDISPLAYING STUDENT INFORMATION");
+                stud.displayInfo();
+
+                break;
+            case 2:
+                Employee emp = new Employee(); // create object tapos malalagay ung info na ininput ni user doon sa seperate class na si "employee"
+
+                System.out.println("Enter your ID NUmber: ");
+                emp.setID(input.nextInt());
+                input.nextLine();
+                System.out.println("Enter youf full name: ");
+                emp.setName(input.nextLine());
+                System.out.println("Enter your department: ");
+                emp.setDepartment(input.nextLine());
+                System.out.println("Enter your salary: ");
+                emp.setSalary(input.nextDouble());
+
+                System.out.println("\nDISPLAYING EMPLOYEE INFORMATION");
+                emp.displayInfo();
+
+                break;
+            default:
+                break;
+        }
+        input.close();
+    }
+}
+
+
+
+
+
+
+// another file for person
+public class Person {
+    // This attribute is for ID
+    private int id;
+    public void setID(int newID){
+        this.id = newID;
+    }
+    public int getID(){
+        return this.id;
+    }
+
+    // This is the attribute for name
+    private String name;
+    public void setName(String newName){
+        this.name = newName;
+    }
+    public String getName(){
+        return this.name;
+    }
+
+    public Person(){
+        this.id = 0;
+        this.name = "";
+    }
+}
+
+
+//another file for student
+public class Student extends Person {  //madagdag si course at yearlevel kay name id pag initialize to sa main class
+    private String course;
+    private int yearLevel;
+
+    public Student(){
+        // this();
+        super();
+        this.course = "";
+        this.yearLevel = 0;
+    }
+
+    public void setCourse(String newCourse){
+        this.course = newCourse;
+    }
+    public void setYearLevel(int newYearLevel){
+        this.yearLevel = newYearLevel;
+    }
+
+    public String getCourse(){
+        return this.course;
+    }
+    public int getYearLevel(){
+        return this.yearLevel;
+    }
+
+    @Override // Override annotation
+    public String getName(){
+        return super.getName().toUpperCase();
+    } // mas susundin to ng code sa loob ng class na to
+
+    public void displayInfo(){
+        System.out.println("ID Number: " + super.getID());
+        System.out.println("Full Name: " + getName());
+        System.out.println("Course: " + this.getCourse());
+        System.out.println("Year Level: " + this.getYearLevel());
+    }
+}
+
+//another file for employee
+public class Employee extends Person {
+    private String department;
+    private double salary;
+
+    public Employee(){
+        this.department = "";
+        this.salary = 0;
+    }
+
+    public void setDepartment(String newDepartment){
+        this.department = newDepartment;
+    }
+    public void setSalary(double newSalary){
+        this.salary = newSalary;
+    }
+
+    public String getDepartment(){
+        return this.department;
+    }
+    public double getSalary(){
+        return this.salary;
+    }
+
+    public void displayInfo(){
+        System.out.println("ID Number: " + super.getID());
+        System.out.println("Full Name: " + super.getName());
+        System.out.println("Department: " + this.getDepartment());
+        System.out.println("Salary: " + this.getSalary());
+    }
+}
+
