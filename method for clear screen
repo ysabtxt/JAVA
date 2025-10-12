@@ -1,0 +1,21 @@
+public class Utils {
+    public static void clear() { // Mas safe
+        try {
+            String os = System.getProperty("os.name");
+
+            if(os.contains("Windows")) {
+                new ProcessBuilder("cmd","/c", "cls").inheritIO().start().waitFor();
+            } else {
+                Runtime.getRuntime().exec("clear");
+            }
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void cls(){ // ANSI Escape Codes, need supported ung device mo with ansi, less safe
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+}
