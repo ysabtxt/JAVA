@@ -1,0 +1,56 @@
+//MAIN.JAVA
+package AbstractAndInterface;
+
+public class Main {
+    public static void main(String[] args) {
+        child c1 = new child();
+        c1.str = "Athena Ysabelle";
+
+        System.out.println (c1.getString());
+        c1.foo();
+        System.out.println("Age: " + c1.computeAge(1990));
+
+    }
+}
+
+// child.java
+package AbstractAndInterface;
+
+public class child extends parent {
+    @Override
+    public void foo(){
+        System.out.println("from abstract method");
+    }
+
+}
+
+//parent.java
+package AbstractAndInterface;
+
+abstract class parent implements GrandParent {
+    public String str;
+    
+    public String getString(){
+        return this.str;
+    }
+
+    abstract void foo(); // abstract method - no body
+     @Override
+    public int computeAge (int birthYear){
+        return currentYear - birthYear;
+    }
+}
+
+//GrandParent.java
+package AbstractAndInterface;
+
+import java.time.Year;
+interface GrandParent {
+    // constant declaration
+    final int currentYear=Year.now().getValue();
+    
+    //abstract method declaration
+    abstract int computeAge(int birthYear);
+    
+}
+
