@@ -1,0 +1,91 @@
+
+// MAIN.JAVA
+package Polymorphism;
+
+public class Main {
+    public static void main(String[] args) {
+        // constructor overloading
+        Poly p1 = new Poly();
+        Poly p2 = new Poly (1234);
+        Poly p3 = new Poly ("Athena");
+
+        //method overloading
+        compute c1 = new compute();
+
+        System.out.println(c1.add(5,7)); // calls 1st func
+        System.out.println(c1.add(5.3,7.4, 10.87)); // calls 2nd func
+        System.out.println(c1.add(5,7, 10)); // calls 3rd func
+        int numbers[] = {1, 22, 3, 4, 45,3}; // calls 4th func
+        System.out.println(c1.add(numbers));
+
+        child child1 = new child();
+        p1.greet();
+        child1.greet();
+
+    }
+}
+
+
+// child.java
+package Polymorphism;
+
+public class child extends Poly { // dapat same declaration sa parent at child, 
+    // with inheritance
+    @Override
+    public void greet (){
+        System.out.println("Hello te");
+        System.out.println("Hello tehhh");
+
+    }
+}
+
+
+//poly.java
+package Polymorphism;
+
+public class Poly {
+    // constructor overloading
+    public Poly (){
+        System.out.println(" without any arguments");
+    }
+    public Poly (int x){
+        System.out.println(" with 1 int argument: " + x);
+    }
+    public Poly (String y){
+        System.out.println(" with string argu: " + y);
+    }
+
+    public void greet (){
+        System.out.println(" Hello world");
+    }
+
+
+}
+
+
+// compute.java
+package Polymorphism;
+
+// method overloading - same function name pero pwedeng different type of parameters
+public class compute {
+    public int add (int n1, int n2){ //1st func
+        return n1 + n2;
+    }
+
+    public double add (double n1, double n2, double n3){ // 2nd func
+        return n1 + n2 + n3;
+    }
+    public double add (int n1, int n2, int n3){ // 3rd func
+        return n1 + n2 + n3;
+    }
+
+    public int add (int[] nums){ // accepts array of numebrs - 4th func
+        int sum = 0;
+        for (int n: nums){
+            sum += n;
+        }
+        return sum;
+    }
+
+}
+
