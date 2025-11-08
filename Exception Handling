@@ -1,0 +1,28 @@
+class ExceptionHandling {
+public static void main(String[] args) {
+       String myName= null; // NullPointerException
+    try {// condition
+       int myInt []= {1, 2, 3}; // mauuna iexecute to
+      System.out.println(myInt[5]); // ArrayIndexOutOfBoundsException
+       int result = 10/0; // ArithmeticException
+    
+        System.out.println(myName.length()); // NullPointerException kasi null ung assigned kay myName
+    }
+   catch (ArrayIndexOutOfBoundsException e){ // pag di tama ung condition ito ung makita
+        System.out.println("Index is 0-2 only!");
+   }
+   catch (ArithmeticException e1){ // pag di tama ung condition ito ung makita
+       System.out.println("Hindi madidivide ang 10 sa 0");
+    }
+
+    catch (NullPointerException e2){
+        System.out.println("The string is null");
+    }
+    finally { // mag eexecute lagi
+        System.out.println ("Finally block");
+
+    }
+    System.out.println("Terminate");
+}
+
+}
